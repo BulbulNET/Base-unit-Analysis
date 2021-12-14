@@ -4,6 +4,7 @@
 
 ### Introduction –
 **Step 1 (analysis)** - These scripts can be used to obtain two different audio analysis – a) “words” analysis - using mel-spectrograms with 35 filters that create one feature vector that describe the entire vocalization. b) “syllables” analysis - extraction of acoustic features, including the fundamental frequency contour which is modeled using Legendre polynomials.
+
 The input are vocal units from "words" / "syllables" directory, which are divided to vocal unit types in advance.
 The output is a data frame- word_df / syllable_df which contains the unit's filename, label (unit name by directory), length, and MFB index / acoustic features.
 
@@ -14,6 +15,7 @@ users can obtain pca, tsne or other methods.
 - Python 3.8
 - librosa
 - sklearn
+
 Launch –
 Run each script through the main scripts. 
 Examples of use –
