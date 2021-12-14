@@ -33,13 +33,15 @@ syllables = False
 
 if words:
 ####   word analysis for taged words from directory - folders by word name   ####
-    word_df, MFBlist = WA.mfb_analysis(labelsPath = "words" , case = '2')
+    word_df, MFBlist = WA.word_analysis(labelsPath = "words" , case = '2')
 
 ####   words data reduction for initial words - 
     X_r, y2 = RC.data_Reduction_words(word_df ,MFBlist, drMethod = 'tsne', n_components =2 , centroid = False , newWords = False)
 
 if mew_words:
 ####   and an option to project new words on the initial analysis  ####
+
+    word_df, MFBlist = WA.word_analysis(labelsPath = "words" , case = '2')
     X_r , y2 , N_r , Ny2, new_words_df = RC.data_Reduction_words(word_df ,MFBlist, drMethod = 'pca', n_components =10 , centroid = True , newWords = True)
 
 if syllables:
