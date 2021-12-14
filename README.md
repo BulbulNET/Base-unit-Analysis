@@ -20,7 +20,7 @@ users can obtain pca, tsne or other methods.
 ### Launch –
 Run each script through the main scripts. 
 
-Examples of use –
+### Examples of use –
 
 Download directories and scripts at the same order as presented here, choose at "main" script which analysis to run by selecting "True":
 
