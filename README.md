@@ -16,25 +16,40 @@ users can obtain pca, tsne or other methods.
 - librosa
 - sklearn
 
-Launch –
-Run each script through the main scripts. 
-Examples of use –
-Download directory and scripts at the same order as presented here, choose at "main" script which analysis to run by selecting "True":
 
-### Words analysis
+### Launch –
+Run each script through the main scripts. 
+
+Examples of use –
+
+Download directories and scripts at the same order as presented here, choose at "main" script which analysis to run by selecting "True":
+
+**Words analysis**
+
 words = True
+
 new_words = False
+
 syllables = False
+
 (in this example only word analysis will run using the files in "words" directory)
 
-### Syllables analysis
+**Syllables analysis**
+
 words = False
+
 new_words = False
+
 syllables = True
+
 (In this example only syllable analysis will run using the files from “syllables” directory)
 
-### New words and syllables analysis
+**New words and syllables analysis**
+
 words = False
+
 new_words = True
+
 syllables = True
+
 (In this example both new word analysis and syllable analysis will run using the files from all directories – "random words", "words", "syllables")
