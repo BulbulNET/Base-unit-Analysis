@@ -19,7 +19,7 @@ users can obtain pca, tsne or other methods.
 Launch –
 Run each script through the main scripts. 
 Examples of use –
-Download directory and scripts at the same order as presented here, choose at "main" scripts which analysis to run by selecting "True":
+Download directory and scripts at the same order as presented here, choose at "main" script which analysis to run by selecting "True":
 
 ### Words analysis
 words = True
