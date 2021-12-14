@@ -11,9 +11,9 @@ The output is a data frame- word_df / syllable_df which contains the unit's file
 users can obtain pca, tsne or other methods.
 
 ### Dependencies –
-•	Python 3.8
-•	librosa
-•	sklearn
+- Python 3.8
+- librosa
+- sklearn
 Launch –
 Run each script through the main scripts. 
 Examples of use –
