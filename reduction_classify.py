@@ -86,6 +86,21 @@ def  nearest_point(point, medians , wordlist):
         
 def  data_Reduction_words(DF ,MFBlist ,  drMethod , n_components = 2 , centroid = True , newWords = True):
     """
+    parameters
+    ----------
+    DF: a datafram containing files information
+    MFBlist : list of MFB from all signals
+    drMethod : pca or tsne
+    n_components : 2 as default but can be more for clustering
+    centroid : if True, centroid are calculate and presented.
+    newWords : if True, new words can be applied on the old words data 
+    
+          
+    output
+    ----------
+    returns: a plot of pca/ tsne
+    X_r : coordinates of data
+    y2 : labels of data
     
     """
     y = DF.iloc[:,1]
@@ -164,14 +179,13 @@ def  data_Reduction_words(DF ,MFBlist ,  drMethod , n_components = 2 , centroid 
             for color, i, words_name in zip(colors, z2, words_names):
                 plt.scatter(medians[i, 0], medians[i, 1], color=color , marker = "X" ,  s = 250 , alpha=.9,
                         lw=lw, label=words_name)
-                # plt.scatter(medians[:,0], medians[:,1], c='red')
             # plt.show()
             
         if newWords == True:
             
             DFNew_Word = []
             
-            Nlarge_df, NMFBlist = WA.mfb_analysis(labelsPath = "RandomWords" , case = '2')
+            Nlarge_df, NMFBlist = WA.word_analysis(labelsPath = "RandomWords" , case = '2')
             Ny = Nlarge_df.iloc[:,1]
             Ny1 = Ny.to_numpy()
             Ny2 = Ny1.astype('int')
@@ -243,7 +257,6 @@ def  data_Reduction_words(DF ,MFBlist ,  drMethod , n_components = 2 , centroid 
             print('explained variance ratio (first two components): %s'
                   % str(pca.explained_variance_ratio_))
             fig = plt.figure(1, figsize=(16, 16))
-    #        ax = Axes3D(fig, elev=-150, azim=110)
     
             for color, i, words_name in zip(colors, z1, words_names):
                 plt.scatter(X_rl[y2 == i, 0], X_rl[y2 == i, 1] , color=color ,  s = 250 , alpha=.9,
@@ -272,17 +285,29 @@ def  data_Reduction_words(DF ,MFBlist ,  drMethod , n_components = 2 , centroid 
         for color, i, words_name in zip(colors, z1, words_names):
             plt.scatter(X_embedded[y2 == i, 0], X_embedded[y2 == i, 1], color=color, s = 120,alpha=.9, lw=lw,
                         label= words_name)
-        # fig = plt.figure(2, figsize=(14, 10))
-        # plt.scatter(X_embedded[:, 0], X_embedded[:, 1], c = zcolors , s = 120,alpha=.8, lw=lw,
-        #         label=syllable_name)
+
         plt.legend(bbox_to_anchor=(1.0 , 0.9) , loc='best', shadow=True, scatterpoints=1)
         # plt.title('TSNE of bulbul dataset')
         plt.grid('both')
         
         return X_embedded , y   
         
-def  data_Reduction_syllable(DF , drMethod , colorMethod = 'syl' , n_components = 2 , centroid = True , newWords = True):
+def  data_Reduction_syllable(DF , drMethod , colorMethod = 'syl' , n_components = 2 , centroid = True , newWords = False):
     """
+    parameters
+    ----------
+    DF: a datafram containing files information
+    drMethod : pca or tsne
+    n_components : 2 as default but can be more for clustering (not more then 4)
+    centroid : if True, centroid are calculate and presented.
+    newWords : not relevant. sould be set on False
+    
+          
+    output
+    ----------
+    returns: a plot of pca/ tsne
+    X_r : coordinates of data
+    y : labels of data
     
     """
     y = DF.iloc[:,1]
@@ -357,9 +382,7 @@ def  data_Reduction_syllable(DF , drMethod , colorMethod = 'syl' , n_components 
         for color, i, syllable_name in zip(colors, z, syllable_names):
             plt.scatter(X_embedded[y == i, 0], X_embedded[y == i, 1], color=color, s = 120,alpha=.9, lw=lw,
                         label=syllable_name)
-        # fig = plt.figure(2, figsize=(14, 10))
-        # plt.scatter(X_embedded[:, 0], X_embedded[:, 1], c = zcolors , s = 120,alpha=.8, lw=lw,
-        #         label=syllable_name)
+
         plt.legend(bbox_to_anchor=(1.0 , 0.9) , loc='best', shadow=True, scatterpoints=1)
         # plt.title('TSNE of bulbul dataset')
         plt.grid('both')

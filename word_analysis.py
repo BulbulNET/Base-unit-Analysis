@@ -9,6 +9,9 @@ CASE 2 - Mel spectrogram with fixed length (variable hop size and frame length)
 CASE 3 - Mel spectrogram with fixed length with zero padding to largest expected
     word length (fixed frame length and hop size) - M_mbflist
 
+output  - 
+word_df - dataframe with 'filename','word_number','word_length','number_of_syllable','MFB index'
+MFBlist - list of all MFB from all signals
 @author: AM and YL
 """
 
@@ -31,7 +34,7 @@ from scipy import signal
 import Utils as Ut
 
  
-def mfb_analysis(labelsPath, case):
+def word_analysis(labelsPath, case):
     
  # get  list of all files  within labelsPath
     wav_files=glob.glob(labelsPath + "/*/*.wav", recursive=True)
@@ -66,7 +69,7 @@ def mfb_analysis(labelsPath, case):
     mfcclist = []
     
     num_syl = {'1':3 ,'12':4 , '14':3 , '17':1 , '40':3 , '41':4 , '50':1
-               , '74':3 , '103':2 , '118':2 , '129':3 , '179':3 , '341':3 , '999':0}
+               , '74':3 , '103':2 , '118':2 , '129':3 , '179':3 , '341':3}
     
     ind = 0
     for j in WordList:
@@ -81,13 +84,14 @@ def mfb_analysis(labelsPath, case):
         data_files = []
         
         for k in range(L):
-            wavname = str(labelsPath +'/'+ str(j)+ '/' + arr[k])
-              
+            wavname = str(labelsPath +'/'+ str(j)+ '/' + arr[k])             
             # print(wavname)
               
             x ,fs = librosa.load(wavname, sr = None) 
             sos = signal.butter(35, np.array([fL,fH]), 'bp', fs = fs, output='sos')
             x = signal.sosfilt(sos, x)
+            
+            #option to play signal-
             # sd.play(x,fs)
             # time.sleep(1)
             
@@ -138,7 +142,6 @@ def mfb_analysis(labelsPath, case):
             elif case == '3':
 
         # Mel spectrogram with fixed length with zero padding to largest expected
-        #    word length (fixed frame length and hop size) - M_mbflist 
                 M_mfb = np.zeros([n_filters, maxL])
                 MFB_last = MFB.shape[1]
                 M_mfb[:,:MFB_last] = np.copy(MFB_dB) # fixed length MFB with zero padding for the columns (case 3)

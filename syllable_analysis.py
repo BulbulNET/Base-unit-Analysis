@@ -14,7 +14,6 @@ import librosa.display
 from sklearn.decomposition import PCA
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from mpl_toolkits.mplot3d import Axes3D
-import pandas
 import glob
 from parse import *
 import re 
@@ -27,7 +26,7 @@ def syllable_analysis(labelsPath = "bulbul", deg = 4, nmfcc = 14, start_zcr = 3 
     ----------
     labelsPath : directory with all data in folders by syllable name.
     deg : degree of legendre polynomial
-    bnfcc : ...
+    nmfcc : number of Mel-frequency cepstral coefficients
     start_zcr : ...
     end_zcr : ...
 
